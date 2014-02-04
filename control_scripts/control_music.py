@@ -7,11 +7,13 @@ import numpy.linalg
 import math
 from mindwavemobile.MindwaveDataPoints import RawDataPoint
 from mindwavemobile.MindwaveDataPointReader import MindwaveDataPointReader
+from subprocess import call
 
 
 if __name__ == '__main__':
-    epsilon = 0.000001;
-    mat = scipy.io.loadmat('model.mat')
+    NUM_BAD = 3
+    epsilon = 0.000001
+    mat = scipy.io.loadmat('../model/modelBE.mat')
     m1 = np.array(mat['m1'].newbyteorder('='))
     m2 = np.array(mat['m2'].newbyteorder('='))
     s1 = (mat['s1'].newbyteorder('='))
@@ -26,6 +28,7 @@ if __name__ == '__main__':
     data = []
     i = 0
     signal_val = 0
+    num_bad = 0
     while(True):
         dataPoint = mindwaveDataPointReader.readNextDataPoint()
         if (not dataPoint.__class__ is RawDataPoint):
@@ -63,8 +66,14 @@ if __name__ == '__main__':
 				decision = g1 - g2
 				if decision > 0:
 					print "Good Music"
+					num_bad = 0
 				else:
 					print "Bad Music"
+					num_bad = num_bad + 1
+					if (num_bad >= NUM_BAD):
+						call(["control-pianobar.sh","n"])
+						print("BAD SONG!!")	
+						num_bad = 0
 			else:
 				print("Low Signal Value of {0}".format(signal_val))
 		else:

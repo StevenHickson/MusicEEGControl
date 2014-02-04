@@ -15,9 +15,9 @@ length = size(sober_test,1);
 sober_results = zeros(1,length);
 for i=1:length
     tmp = sober_test(i,:) - m1;
-    g1 = -0.5 * (tmp * s1_inv * tmp') + log(0.5) + -3*log(2*3.14159256) - 0.5 * lndet_sober;
+    g1 = -0.5 * (tmp * s1_inv * tmp') + log(0.5) + -5*log(2*3.14159256) - 0.5 * lndet_sober;
     tmp = sober_test(i,:) - m2;
-    g2 = -0.5 * (tmp * s2_inv * tmp') + log(0.5) + -3*log(2*3.14159256) - 0.5 * lndet_drunk;
+    g2 = -0.5 * (tmp * s2_inv * tmp') + log(0.5) + -5*log(2*3.14159256) - 0.5 * lndet_drunk;
     decision = g1 - g2;
     if(decision > 0)
         conf(1,1) = conf(1,1) + 1;
@@ -32,9 +32,9 @@ length = size(drunk_test,1);
 drunk_results = zeros(1,length);
 for i=1:length
     tmp = drunk_test(i,:) - m1;
-    g1 = -0.5 * (tmp * s1_inv * tmp') + log(0.5) + -3*log(2*3.14159256) - 0.5 * lndet_sober;
+    g1 = -0.5 * (tmp * s1_inv * tmp') + log(0.5) + -5*log(2*3.14159256) - 0.5 * lndet_sober;
     tmp = drunk_test(i,:) - m2;
-    g2 = -0.5 * (tmp * s2_inv * tmp') + log(0.5) + -3*log(2*3.14159256) - 0.5 * lndet_drunk;
+    g2 = -0.5 * (tmp * s2_inv * tmp') + log(0.5) + -5*log(2*3.14159256) - 0.5 * lndet_drunk;
     decision = g1 - g2;
     if(decision > 0)
         conf(2,1) = conf(2,1) + 1;

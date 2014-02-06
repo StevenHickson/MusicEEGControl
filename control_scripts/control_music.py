@@ -11,7 +11,7 @@ from subprocess import call
 
 
 if __name__ == '__main__':
-    NUM_BAD = 3
+    NUM_BAD = 4
     epsilon = 0.000001
     mat = scipy.io.loadmat('../model/modelBE.mat')
     m1 = np.array(mat['m1'].newbyteorder('='))

@@ -1,8 +1,0 @@
-function [ conf ] = ConvertToFFT( sober, drunk, k, flag )
-%Convert to fft
-length = size(sober,1);
-length = length - 10;
-for i=1:length
-   sober(i,:) = fft(sober(i:i+10,:)); 
-end
-sober = sober(1:length,:)

@@ -38,10 +38,10 @@ for i=1:length
     decision = g1 - g2;
     if(decision > 0)
         conf(2,1) = conf(2,1) + 1;
-        drunk_results(i) = 2;
+        drunk_results(i) = 1;
     else
         conf(2,2) = conf(2,2) + 1;
-        drunk_results(i) = 1;
+        drunk_results(i) = 2;
     end
 end
 
